@@ -1,5 +1,6 @@
 import "./App.css";
 import Home from "./pages/Home";
+import EventPractice from "./components/Header/Greeting/Greeting"
 
 function App() {
   return (
@@ -9,4 +10,8 @@ function App() {
   );
 }
 
-export default App;
+const Happ = () => {
+  return <EventPractice/>;
+};
+
+export { App, Happ };
