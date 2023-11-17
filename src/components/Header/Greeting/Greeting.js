@@ -85,7 +85,7 @@ const DropdownButton = styled.button`
 const CalendarWrapper = styled.div`
   z-index: 11;
   position: absolute;
-  top: 100%;
+  top: 90%;
   left: 0;
   display: ${(props) => (props.isOpen ? "block" : "none")};
 `;
