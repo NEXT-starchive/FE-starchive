@@ -1,0 +1,52 @@
+{
+  "code": 1,
+  "msg": "정보를 성공적으로 가져왔습니다.",
+  "data": {
+    "content": [
+      {
+        "id": "64c45ac3935eb61c140793e7",
+        "shop": "당근마켓",
+        "price": 15000,
+        "title": "물품이름",
+        "uploadtime": "localdatetime",
+        "img": "s3에 해당하는url",
+        "url": "https://naver.com"
+      },
+      {
+        "id": "64c45ac3935eb61c140793e7",
+        "shop": "당근마켓",
+        "price": 15000,
+        "title": "물품이름",
+        "uploadtime": "localdatetime",
+        "img": "s3에 해당하는url",
+        "url": "url"
+      }
+    ],
+
+    "pageable": {
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "offset": 3,
+      "pageNumber": 2,
+      "pageSize": 2,
+      "paged": true,
+      "unpaged": false
+    },
+    "totalPages": 2,
+    "totalElements": 2,
+    "last": true,
+    "size": 1,
+    "number": 1,
+    "sort": {
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
+    },
+    "numberOfElements": 1,
+    "first": false,
+    "empty": false
+  }
+}
