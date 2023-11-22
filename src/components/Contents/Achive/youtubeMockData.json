@@ -1,0 +1,50 @@
+{
+  "code": 1,
+  "msg": "정보를 성공적으로 가져왔습니다.",
+  "data": {
+    "content": [
+      {
+        "id": "64c45ac3935eb61c140793e7",
+        "name": "BANGTANTV",
+        "title": "[슈취타] EP.21 SUGA with 정국 Ⅱ",
+        "uploadtime": "2주전",
+        "img": "https://i.ytimg.com/vi/0RKnjVL2kWA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCBslgQpZ4zaEcs-NTHSmo0m9ZWBw",
+        "url": "https://www.youtube.com/watch?v=0RKnjVL2kWA&t=99s"
+      },
+      {
+        "id": "64c45ac3935eb61c140793e7",
+        "name": "유튜브 계정 이름",
+        "title": "유튜브 영상 이름",
+        "uploadtime": "localdatetime",
+        "img": "s3에 해당하는url",
+        "url": "url"
+      }
+    ],
+
+    "pageable": {
+      "sort": {
+        "empty": true,
+        "sorted": false,
+        "unsorted": true
+      },
+      "offset": 3,
+      "pageNumber": 2,
+      "pageSize": 2,
+      "paged": true,
+      "unpaged": false
+    },
+    "totalPages": 2,
+    "totalElements": 2,
+    "last": true,
+    "size": 1,
+    "number": 1,
+    "sort": {
+      "empty": true,
+      "sorted": false,
+      "unsorted": true
+    },
+    "numberOfElements": 1,
+    "first": false,
+    "empty": false
+  }
+}
