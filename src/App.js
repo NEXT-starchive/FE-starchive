@@ -1,17 +1,22 @@
 import "./App.css";
-import Home from "./pages/Home";
-import EventPractice from "./components/Header/Greeting/Greeting"
+import AppRouter from "./pages/Router";
+import EventPractice from "./components/Header/Greeting/Greeting";
 
 function App() {
   return (
-    <div className="App">
-      <Home />
+    <div
+      className="App"
+      style={{
+        background: "#FAF8FB",
+      }}
+    >
+      <AppRouter />
     </div>
   );
 }
 
 const Happ = () => {
-  return <EventPractice/>;
+  return <EventPractice />;
 };
 
 export { App, Happ };

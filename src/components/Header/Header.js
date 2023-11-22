@@ -1,12 +1,15 @@
 import { styled } from "styled-components";
 import Greeting from "./Greeting/Greeting";
 import Search from "./Search/Search";
+import Login from "./Login/Login";
 
 const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <LoginContainer>Login</LoginContainer>
+        <LoginContainer>
+          <Login />
+        </LoginContainer>
 
         <SearchContainer>
           <Greeting />
@@ -35,4 +38,6 @@ const SearchContainer = styled.div`
   display: flex;
   align-items: center;
   height: 100%;
+  max-width: 1110px;
+  margin: 0 auto;
 `;
