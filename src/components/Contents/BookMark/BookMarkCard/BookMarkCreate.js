@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Plus } from "lucide-react";
 import { saveBookmark, loadBookmark } from "../../../../utils/local-storage";
 import { extractDomain } from "../../../../utils/extract-domain";
@@ -18,6 +18,12 @@ const BookMarkCreate = () => {
     setOpen(!open);
   };
 
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setOpen(false);
+    }
+  };
+
   const createBookMark = () => {
     if (!url) return alert("URL을 입력해주세요");
 
@@ -34,6 +40,16 @@ const BookMarkCreate = () => {
     setUrl("");
     setTitle("");
   };
+
+  useEffect(() => {
+    // window 객체에 클릭 이벤트 리스너를 추가합니다.
+    window.addEventListener("click", handleClickOutside);
+
+    // 컴포넌트가 언마운트될 때 리스너를 제거합니다.
+    return () => {
+      window.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
 
   return (
     <BookMarkCardContainer ref={ref}>
@@ -85,6 +101,7 @@ const InputBox = styled.div`
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: #ffffff;
+  z-idex: 1;
 
   left: ${({ widthOver }) => (widthOver ? "-600%" : "50%")};
 `;

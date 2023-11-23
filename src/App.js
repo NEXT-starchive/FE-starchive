@@ -22,4 +22,4 @@ const Happ = () => {
   return <EventPractice />;
 };
 
-export { App, Happ };
+export default App;
