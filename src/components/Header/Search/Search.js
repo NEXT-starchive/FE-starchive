@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { useState, useCallback } from "react";
 import { debounce } from "lodash";
+import SearchIconImage from "../../../assets/images/search-icon.png";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -26,6 +27,7 @@ const Search = () => {
   return (
     <SearchComponent>
       <SearchContainer onSubmit={handleSubmit}>
+        <SearchIcon imageUrl={SearchIconImage} />
         <SearchInput
           placeholder="검색어를 입력해주세요."
           onChange={handleInputChange}
@@ -44,25 +46,39 @@ const SearchComponent = styled.div`
   border: 1px solid #000;
 `;
 
+const SearchIcon = styled.div`
+  width: 30px;
+  height: 30px;
+  background-image: url(${({ imageUrl }) => imageUrl});
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-right: 5px;
+`;
+
 const SearchContainer = styled.form`
+  display: flex;
+  align-items: center;
+  justify-content: left;
   width: 736px;
   border-radius: 40px;
   border: 5px solid #d8d5e1;
   box-sizing: border-box;
   background: #faf8fb;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  padding-left: 78px;
+  padding: 3px;
+  padding-left: 20px;
+  margin-right: auto;
 `;
 
 const SearchInput = styled.input`
-  width: 500px;
+  width: 100%;
   max-width: 100%;
   height: 30px;
   line-height: 30px;
   padding: 0 5px;
   background: transparent;
   border: none;
-  border: 1px solid #333;
   border-radius: 0;
   box-sizing: border-box;
   font-size: 20px;
