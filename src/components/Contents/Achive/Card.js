@@ -36,21 +36,20 @@ const CardContainer = styled.div`
   width: 255px;
 `;
 
-const OgImg = styled.img`
-  height: 151px;
-`;
 const PreviewImgDiv = styled.div`
   width: 235px;
   padding: 10px 10px;
   background-color: white;
   border-radius: 20px 20px 0px 0px;
+  overflow: hidden;
 `;
+
 const PreviewImg = styled.div`
   width: 100%;
   height: 151px;
   background-repeat: no-repeat;
   background-color: white;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   border-radius: 20px 20px 0px 0px;
 `;
