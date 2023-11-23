@@ -1,16 +1,22 @@
 import { styled } from "styled-components";
-import { useState } from "react";
+import { useState, useCallback } from "react";
+import { debounce } from "lodash";
 
 const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
 
+  // Debounce된 함수를 생성합니다.
+  const debouncedSave = useCallback(
+    debounce((nextValue) => setSearchTerm(nextValue), 100),
+    [] // 의존성 배열이 비어있음을 확인합니다.
+  );
+
   const handleInputChange = (event) => {
-    setSearchTerm(event.target.value);
+    debouncedSave(event.target.value);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault(); // 폼 제출에 의한 페이지 새로고침 방지
-    console.log("검색어:", searchTerm);
     // 검색 로직 구현
     window.location.href = `https://www.google.com/search?q=${encodeURIComponent(
       searchTerm

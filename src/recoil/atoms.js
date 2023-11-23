@@ -1,6 +1,5 @@
 import { atom } from "recoil";
 import { recoilPersist } from "recoil-persist";
-import { UserDataSchema } from "../types/user";
 
 const sessionStorage =
   typeof window !== "undefined" ? window.sessionStorage : undefined;
@@ -21,4 +20,9 @@ export const userDataAtoms = atom({
     id: "",
   },
   effects_UNSTABLE: [persistAtom],
+});
+
+export const currentBookMarkAtom = atom({
+  key: "currentBookMarkAtom",
+  default: [],
 });
