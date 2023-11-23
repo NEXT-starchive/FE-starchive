@@ -15,7 +15,7 @@ export default AchiveTitle;
 const AchiveTitleContainer = styled.div`
   display: flex;
   align-items: center;
-  margin: 0px 0px;
+  margin: 0px 0px -40px 10px;
 `;
 
 const CharacterImg = styled.div`
@@ -23,6 +23,8 @@ const CharacterImg = styled.div`
   height: 70px;
   margin: 0px 0px;
   padding: 0px 0px;
+  position: relative;
+  left: 5px;
 `;
 
 const TitleDiv = styled.div`
@@ -33,9 +35,11 @@ const TitleDiv = styled.div`
   background: #fff;
 
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   margin: 0px 0px;
+  position: relative;
+  right: 18px;
 `;
 
 const Title = styled.p`
