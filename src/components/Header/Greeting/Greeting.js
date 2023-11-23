@@ -1,14 +1,14 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
-import Calendar from 'react-calendar';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
+import Calendar from "react-calendar";
 
 //mock데이터 테스트
-import greetingMock from './Greeting.json';
+import greetingMock from "./Greeting.json";
 //image
-import button from './img/button.png';
-import calendar from './img/calendar.png';
-import greeting from './img/greeting.png';
+import button from "./img/button.png";
+import calendar from "./img/calendar.png";
+import greeting from "./img/greeting.png";
 
 const Container = styled.div`
   position: fixed;
@@ -62,22 +62,20 @@ const DaysContainer = styled.div`
 
 function MessageModal({ isOpen, closeModal, message, setMessage }) {
   const [form, setForm] = useState({ message: message });
-  console.log(localStorage.getItem('authCode'));
-  console.log(JSON.parse(localStorage.getItem('authCode')).accessToken);
-  const token = JSON.parse(localStorage.getItem('authCode')).accessToken;
 
   const handleChange = (e) => {
     setForm({ message: e.target.value });
   };
 
   const textBallonPost = async () => {
+    const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     const payload = {
       textballon: form.message,
     };
     //인삿말 가져오기
     try {
       const response = await axios.post(
-        'http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon',
+        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon",
         payload,
         {
           headers: {
@@ -87,18 +85,18 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
       );
       console.log(response.data);
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error("Error fetching data: ", error);
     }
   };
 
   const handleSubmit = () => {
     setMessage(form.message);
-    textBallonPost();
+    if (localStorage.getItem("authCode")) textBallonPost();
     closeModal();
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit();
     }
   };
@@ -128,23 +126,23 @@ function dateFormat(date) {
   let minute = date.getMinutes();
   let second = date.getSeconds();
 
-  month = month >= 10 ? month : '0' + month;
-  day = day >= 10 ? day : '0' + day;
-  hour = hour >= 10 ? hour : '0' + hour;
-  minute = minute >= 10 ? minute : '0' + minute;
-  second = second >= 10 ? second : '0' + second;
+  month = month >= 10 ? month : "0" + month;
+  day = day >= 10 ? day : "0" + day;
+  hour = hour >= 10 ? hour : "0" + hour;
+  minute = minute >= 10 ? minute : "0" + minute;
+  second = second >= 10 ? second : "0" + second;
 
   return (
     date.getFullYear() +
-    '-' +
+    "-" +
     month +
-    '-' +
+    "-" +
     day +
-    ' ' +
+    " " +
     hour +
-    ':' +
+    ":" +
     minute +
-    ':' +
+    ":" +
     second
   );
 }
@@ -156,17 +154,15 @@ function CalendarModal({
   setDaysPassed,
   selectedDate,
 }) {
-  console.log(localStorage.getItem('authCode'));
-  console.log(JSON.parse(localStorage.getItem('authCode')).accessToken);
-  const token = JSON.parse(localStorage.getItem('authCode')).accessToken;
   const calendarPost = async () => {
     //인삿말 가져오기
+    const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     const payload = {
       firstday: dateFormat(selectedDate),
     };
     try {
       const response = await axios.post(
-        'http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/firstday',
+        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/firstday",
         payload,
         {
           headers: {
@@ -179,7 +175,7 @@ function CalendarModal({
 
       //   setSelectedDate(new Date());
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error("Error fetching data: ", error);
     }
   };
 
@@ -190,7 +186,7 @@ function CalendarModal({
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     setDaysPassed(diffDays);
     closeModal();
-    calendarPost();
+    if (localStorage.getItem("authCode")) calendarPost();
   };
 
   return isOpen ? (
@@ -205,20 +201,18 @@ function CalendarModal({
 }
 
 function App() {
-  console.log(localStorage.getItem('authCode'));
-  console.log(JSON.parse(localStorage.getItem('authCode')).accessToken);
-  const token = JSON.parse(localStorage.getItem('authCode')).accessToken;
   const [isMessageModalOpen, setMessageModalOpen] = useState(false);
   const [isCalendarModalOpen, setCalendarModalOpen] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [daysPassed, setDaysPassed] = useState(null);
 
   const textBallonGet = async () => {
+    const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     //인삿말 가져오기
     try {
       const response = await axios.get(
-        'http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon',
+        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon",
         {
           headers: {
             ACCESS_AUTHORIZATION: `${token}`,
@@ -231,15 +225,16 @@ function App() {
 
       setMessage(value);
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error("Error fetching data: ", error);
     }
   };
 
   const calendarGet = async () => {
+    const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     //인삿말 가져오기
     try {
       const response = await axios.get(
-        'http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/firstday',
+        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/firstday",
         {
           headers: {
             ACCESS_AUTHORIZATION: `${token}`,
@@ -249,12 +244,12 @@ function App() {
 
       setSelectedDate(new Date());
     } catch (error) {
-      console.error('Error fetching data: ', error);
+      console.error("Error fetching data: ", error);
     }
   };
 
   useEffect(() => {
-    if (localStorage.getItem('authCode')) {
+    if (localStorage.getItem("authCode")) {
       textBallonGet();
       calendarGet();
     }
@@ -266,11 +261,11 @@ function App() {
       <ButtonContainer>
         <button
           style={{
-            width: '30px',
-            height: '30px',
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center',
+            width: "30px",
+            height: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
           onClick={() => setMessageModalOpen(true)}
         >
@@ -279,18 +274,18 @@ function App() {
         <img src={greeting} width="100" />
         <div
           style={{
-            position: 'relative',
-            display: 'inline-block',
-            marginTop: '20px',
+            position: "relative",
+            display: "inline-block",
+            marginTop: "20px",
           }}
         >
           <button
             style={{
-              width: '30px',
-              height: '30px',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
+              width: "30px",
+              height: "30px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
             }}
             onClick={() => setCalendarModalOpen(true)}
           >
@@ -300,7 +295,7 @@ function App() {
       </ButtonContainer>
       {daysPassed != null && (
         <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
-          daysPassed + '일'
+          daysPassed + "일"
         }`}</DaysContainer>
       )}
       <MessageModal
