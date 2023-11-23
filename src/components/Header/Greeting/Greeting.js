@@ -1,94 +1,147 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css'; // Make sure to have this CSS import
 
-const Greeting = () => {
-  const [form, setForm] = useState({ username: '', message: '' });
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [daysPassed, setDaysPassed] = useState(null);
+//image
+import button from './img/button.png'
+import calendar from './img/calendar.png'
+import greeting from './img/greeting.png'
 
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  const handleSubmit = () => {
-    alert(`${form.username}: ${form.message}`);
-    setForm({ username: '', message: '' });
-  };
-
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleSubmit();
-    }
-  };
-
-  const toggleCalendar = () => {
-    setIsCalendarOpen(!isCalendarOpen);
-  };
-
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-    const today = new Date();
-    const diffTime = Math.abs(today - date);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    setDaysPassed(diffDays);
-    setIsCalendarOpen(false);
-  };
-
-  return (
-    <GreetingContainer>
-      <div>
-        <h1>인삿말 수정</h1>
-        <input
-          type="text"
-          name="message"
-          placeholder="입력해주세요"
-          value={form.message}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-        <button onClick={handleSubmit}>확인</button>
-        {daysPassed != null && <p>{`방탄과 함께한지: ${daysPassed+'일'}`}</p>}
-      </div>
-
-      <CalendarContainer>
-        <DropdownButton onClick={toggleCalendar}>Open Calendar</DropdownButton>
-        <CalendarWrapper isOpen={isCalendarOpen}>
-          <Calendar onChange={handleDateChange} value={selectedDate} />
-        </CalendarWrapper>
-      </CalendarContainer>
-    </GreetingContainer>
-  );
-};
-
-const GreetingContainer = styled.div`
-  flex: 1;
-  width: 322px;
-  height: 135px;
-  box-sizing: border-box;
-  border: 1px solid #000;
+const Container = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
-const CalendarContainer = styled.div`
-  position: relative;
+const ModalBox = styled.div`
+    width: 500px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
 `;
 
-const DropdownButton = styled.button`
-  // [styling rules]
+const CloseButton = styled.button`
+    float: right;
 `;
 
-const CalendarWrapper = styled.div`
-  z-index: 11;
-  position: absolute;
-  top: 90%;
-  left: 0;
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+const ButtonContainer = styled.div`
+    display: flex;
+    flex-direction: column;
 `;
 
+const MessageContainer = styled.div`
+    padding: 10px;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #9c27b0; /* light purple */
+    font-weight: bold;
+`;
 
-export default Greeting;
+const DaysContainer = styled.div`
+    /* Add your CSS here */
+    padding: 10px;
+    background-color: white;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #9c27b0; /* darker purple */
+    font-weight: bold;
+`;
+
+function MessageModal({ isOpen, closeModal, message, setMessage }) {
+    const [form, setForm] = useState({ message: message });
+
+    const handleChange = (e) => {
+        setForm({ message: e.target.value });
+    };
+
+    const handleSubmit = () => {
+        setMessage(form.message);
+        closeModal();
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit();
+        }
+    };
+
+    return isOpen ? (
+        <Container>
+            <ModalBox>
+                <CloseButton onClick={closeModal}>X</CloseButton>
+                <h3>인삿말을 바꿔보세요</h3>
+                <input
+                    type="text"
+                    name="message"
+                    placeholder="인삿말을 입력해주세요"
+                    value={form.message}
+                    onChange={handleChange}
+                    onKeyPress={handleKeyPress}
+                />
+                <button onClick={handleSubmit}>저장</button>
+            </ModalBox>
+        </Container>
+    ) : null;
+}
+
+function CalendarModal({ isOpen, closeModal, setSelectedDate, setDaysPassed }) {
+    const handleDateChange = (date) => {
+        setSelectedDate(date);
+        const today = new Date();
+        const diffTime = Math.abs(today - date);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        setDaysPassed(diffDays);
+        closeModal();
+    };
+
+    return isOpen ? (
+        <Container>
+            <ModalBox>
+                <CloseButton onClick={closeModal}>X</CloseButton>
+                <h3>입덕일을 입력해주세요</h3>
+                <Calendar onChange={handleDateChange} />
+            </ModalBox>
+        </Container>
+    ) : null;
+}
+
+function App() {
+    const [isMessageModalOpen, setMessageModalOpen] = useState(false);
+    const [isCalendarModalOpen, setCalendarModalOpen] = useState(false);
+    const [message, setMessage] = useState('');
+    const [selectedDate, setSelectedDate] = useState(new Date());
+    const [daysPassed, setDaysPassed] = useState(null);
+
+    return (
+        <div>
+            {message && <MessageContainer>{message}</MessageContainer>}
+            <ButtonContainer>
+            <button style={{width: '30px', height: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center'}} onClick={() => setMessageModalOpen(true)}>
+            <img src={button} alt="인삿말 버튼" width="20" height="20"/>
+            </button>
+            <img src={greeting} width="100"/>
+            <div style={{position: 'relative', display: 'inline-block', marginTop: '20px'}}>
+            <button style={{width: '30px', height: '30px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'absolute', right: 0, bottom: '-20px'}} onClick={() => setCalendarModalOpen(true)}>
+            <img src={button} alt="입덕일 버튼" width="20" height="20"/>
+            </button>
+        </div>
+
+            </ButtonContainer>
+            {daysPassed != null && <DaysContainer>{`방탄과 함께한지: ${daysPassed+'일'}`}</DaysContainer>}
+            <MessageModal isOpen={isMessageModalOpen} closeModal={() => setMessageModalOpen(false)} message={message} setMessage={setMessage} />
+            <CalendarModal isOpen={isCalendarModalOpen} closeModal={() => setCalendarModalOpen(false)} setSelectedDate={setSelectedDate} setDaysPassed={setDaysPassed} />
+            <img src={calendar} width="50" style={{marginTop: '20px'}}/>
+        </div>
+    );
+}
+
+export default App;
