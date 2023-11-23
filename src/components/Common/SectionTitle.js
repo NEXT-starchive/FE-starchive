@@ -23,6 +23,9 @@ const CharacterImg = styled.div`
   height: 70px;
   margin: 0px 0px;
   padding: 0px 0px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 `;
 
 const TitleDiv = styled.div`
