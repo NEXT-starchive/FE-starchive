@@ -25,6 +25,8 @@ const CharacterImg = styled.div`
   padding: 0px 0px;
   position: relative;
   left: 5px;
+  background-repeat: no-repeat;
+  z-index: 1;
 `;
 
 const TitleDiv = styled.div`
