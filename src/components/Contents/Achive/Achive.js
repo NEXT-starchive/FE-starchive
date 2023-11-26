@@ -4,7 +4,7 @@ import TwitterCards from "./TwitterCards";
 import GoodsCards from "./GoodsCards";
 import YoutubeCards from "./YoutubeCards";
 //logoUrl
-import logoTwitter from "./img/logoTwitter.png";
+// import logoTwitter from "./img/logoTwitter.png";
 
 import characterTwitter from "./img/Twitter.jpg";
 import characterYoutube from "./img/Youtube.jpg";

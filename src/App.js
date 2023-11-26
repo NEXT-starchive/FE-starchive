@@ -1,6 +1,5 @@
 import "./App.css";
 import AppRouter from "./pages/Router";
-import EventPractice from "./components/Header/Greeting/Greeting";
 import { RecoilRoot } from "recoil";
 
 function App() {
