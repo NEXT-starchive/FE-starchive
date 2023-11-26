@@ -11,6 +11,7 @@ import button from "./img/button.png";
 import calendar from "./img/calendar.png";
 import greeting from "./img/greeting.png";
 import { baseApiUrl } from "../../../constants/base-api-url";
+import { dateFormat } from "../../../utils/date-format";
 
 const Container = styled.div`
   position: fixed;
@@ -42,42 +43,6 @@ const CloseButton = styled.button`
   padding: 5px 10px;
 `;
 
-const ButtonContainer = styled.div`
-  display: flex;
-  /* flex-direction: column; */
-`;
-
-const MessageContainer = styled.div`
-  padding: 10px;
-  background-color: white;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  color: #9c27b0; /* light purple */
-  font-weight: bold;
-`;
-
-const DaysContainer = styled.div`
-  /* Add your CSS here */
-  padding: 10px;
-  background-color: white;
-  border-radius: 15px;
-  border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(128, 94, 158, 0.1);
-  color: #9c27b0; /* darker purple */
-  font-weight: bold;
-`;
-
-const Reactcalendar = styled.div`
-  width: 350px;
-  max-width: 100%;
-  background: white;
-  font-family: Arial, Helvetica, sans-serif;
-  line-height: 1.125em;
-  border-radius: 10px;
-  position: center;
-  box-shadow: 0px 0px 20px #e0e0e0;
-`;
 const SaveButton = styled.button`
   background-color: '#f44336'
   color: white;
@@ -148,33 +113,6 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
     </Container>
   ) : null;
 }
-function dateFormat(date) {
-  let month = date.getMonth() + 1;
-  let day = date.getDate();
-  let hour = date.getHours();
-  let minute = date.getMinutes();
-  let second = date.getSeconds();
-
-  month = month >= 10 ? month : "0" + month;
-  day = day >= 10 ? day : "0" + day;
-  hour = hour >= 10 ? hour : "0" + hour;
-  minute = minute >= 10 ? minute : "0" + minute;
-  second = second >= 10 ? second : "0" + second;
-
-  return (
-    date.getFullYear() +
-    "-" +
-    month +
-    "-" +
-    day +
-    " " +
-    hour +
-    ":" +
-    minute +
-    ":" +
-    second
-  );
-}
 
 function CalendarModal({
   isOpen,
@@ -225,7 +163,7 @@ function CalendarModal({
   ) : null;
 }
 
-function App() {
+const Firstday = () => {
   const [isMessageModalOpen, setMessageModalOpen] = useState(false);
   const [isCalendarModalOpen, setCalendarModalOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -275,35 +213,35 @@ function App() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        marginTop: "20px",
-        flex: "0.8",
-      }}
-    >
-      {message ? (
-        <MessageContainer>{message}</MessageContainer>
-      ) : (
-        <MessageContainer>인삿말을 압력해주세요.</MessageContainer>
-      )}
-      <ButtonContainer>
-        <img
-          src={button}
-          alt="인삿말 버튼"
-          width="20"
-          height="20"
-          style={{
-            cursor: "pointer",
-            marginTop: "auto",
-          }}
-          onClick={() => setMessageModalOpen(true)}
+    <>
+      <div
+        style={{
+          paddingTop: "20px",
+        }}
+      >
+        <MessageModal
+          isOpen={isMessageModalOpen}
+          closeModal={() => setMessageModalOpen(false)}
+          message={message}
+          setMessage={setMessage}
+        />
+        <CalendarModal
+          isOpen={isCalendarModalOpen}
+          selectedDate={selectedDate}
+          closeModal={() => setCalendarModalOpen(false)}
+          setSelectedDate={setSelectedDate}
+          setDaysPassed={setDaysPassed}
         />
 
-        <img src={greeting} width="100" />
-        {/* <div
+        {/* <img src={calendar} width="80" /> */}
+        {daysPassed != null ? (
+          <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
+            daysPassed + "일"
+          }`}</DaysContainer>
+        ) : (
+          <DaysContainer>{`입덕일을 입력해주세요`}</DaysContainer>
+        )}
+        <div
           style={{
             position: "relative",
             display: "inline-block",
@@ -320,29 +258,21 @@ function App() {
             }}
             onClick={() => setCalendarModalOpen(true)}
           />
-        </div> */}
-      </ButtonContainer>
-      {/* {daysPassed != null && (
-        <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
-          daysPassed + "일"
-        }`}</DaysContainer>
-      )} */}
-      <MessageModal
-        isOpen={isMessageModalOpen}
-        closeModal={() => setMessageModalOpen(false)}
-        message={message}
-        setMessage={setMessage}
-      />
-      {/* <CalendarModal
-        isOpen={isCalendarModalOpen}
-        selectedDate={selectedDate}
-        closeModal={() => setCalendarModalOpen(false)}
-        setSelectedDate={setSelectedDate}
-        setDaysPassed={setDaysPassed}
-      />
-      <img src={calendar} width="80" /> */}
-    </div>
+        </div>
+      </div>
+    </>
   );
-}
+};
 
-export default App;
+const DaysContainer = styled.div`
+  /* Add your CSS here */
+  padding: 10px;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 10px rgba(128, 94, 158, 0.1);
+  color: #9c27b0; /* darker purple */
+  font-weight: bold;
+`;
+
+export default Firstday;

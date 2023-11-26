@@ -43,7 +43,6 @@ const SearchComponent = styled.div`
   flex: 2;
   height: 69px;
   box-sizing: border-box;
-  border: 1px solid #000;
 `;
 
 const SearchIcon = styled.div`

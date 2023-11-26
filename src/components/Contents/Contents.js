@@ -2,12 +2,14 @@ import { styled } from "styled-components";
 import PlayList from "./Playlist/Playlist";
 import BookMark from "./BookMark/BookMark";
 import Achive from "./Achive/Achive";
+import Firstday from "./Firstday/Firstday";
 
 const Contents = () => {
   return (
     <>
       <ContentsContainer>
         <PlayListContainer>
+          <Firstday />
           <PlayList />
         </PlayListContainer>
 
@@ -37,5 +39,4 @@ const PlayListContainer = styled.div`
 const MainContainer = styled.div`
   width: 100%;
   flex: 2;
-  border: 1px solid #000;
 `;

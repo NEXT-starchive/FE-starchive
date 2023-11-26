@@ -44,7 +44,6 @@ export default Achive;
 
 const AchiveContainer = styled.div`
   box-sizing: border-box;
-  border: 1px solid red;
   height: 1000px;
 
   display: flex;

@@ -26,3 +26,8 @@ export const currentBookMarkAtom = atom({
   key: "currentBookMarkAtom",
   default: [],
 });
+
+export const authCodeAtom = atom({
+  key: "authCodeAtom",
+  default: null,
+});

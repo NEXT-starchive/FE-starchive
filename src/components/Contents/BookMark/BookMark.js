@@ -41,7 +41,6 @@ export default BookMark;
 
 const BookMarkContainer = styled.div`
   box-sizing: border-box;
-  border: 1px solid #000;
   padding: 50px 30px;
 `;
 
