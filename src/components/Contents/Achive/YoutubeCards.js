@@ -37,4 +37,5 @@ const LinkTo = styled.a`
   margin: 0 0;
   text-decoration: none;
   color: black;
+  margin: -20px 10px 23px 10px;
 `;

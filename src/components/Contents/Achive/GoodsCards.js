@@ -31,10 +31,12 @@ export default GoodsCards;
 
 const GoodsCardsContainer = styled.div`
   width: 280px;
+  margin-bottom: 20px;
 `;
 
 const LinkTo = styled.a`
   margin: 0 0;
   text-decoration: none;
   color: black;
+  margin: -20px 10px 23px 10px;
 `;

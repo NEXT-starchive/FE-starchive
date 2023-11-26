@@ -32,7 +32,7 @@ const CardContainer = styled.div`
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  margin: -20px 10px 23px 10px;
+  /* margin: -20px 10px 23px 10px; */
   width: 255px;
 `;
 
