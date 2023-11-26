@@ -180,7 +180,7 @@ const InputBox = styled.div`
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background: #ffffff;
-  z-index: 1;
+  z-index: 3;
 
   left: ${({ widthOver }) => (widthOver ? "-600%" : "50%")};
 `;
