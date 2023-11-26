@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
-import 'react-calendar/dist/Calendar.css';
+import "react-calendar/dist/Calendar.css";
 
 //mock데이터 테스트
 import greetingMock from "./Greeting.json";
@@ -10,6 +10,7 @@ import greetingMock from "./Greeting.json";
 import button from "./img/button.png";
 import calendar from "./img/calendar.png";
 import greeting from "./img/greeting.png";
+import { baseApiUrl } from "../../../constants/base-api-url";
 
 const Container = styled.div`
   position: fixed;
@@ -30,15 +31,15 @@ const ModalBox = styled.div`
   background-color: white;
   border-radius: 10px;
   z-index: 10;
-  box-shadow: 0 0 10px rgba(128, 94, 158, 0.5); 
+  box-shadow: 0 0 10px rgba(128, 94, 158, 0.5);
 `;
 
 const CloseButton = styled.button`
-float: right;
-background-color: #ab47bc; /* dark pastel purple */
-color: white;
-border-radius:100px;
-padding: 5px 10px;
+  float: right;
+  background-color: #ab47bc; /* dark pastel purple */
+  color: white;
+  border-radius: 100px;
+  padding: 5px 10px;
 `;
 
 const ButtonContainer = styled.div`
@@ -106,15 +107,11 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
     };
     //인삿말 가져오기
     try {
-      const response = await axios.post(
-        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon",
-        payload,
-        {
-          headers: {
-            ACCESS_AUTHORIZATION: `${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${baseApiUrl}/textballon`, payload, {
+        headers: {
+          ACCESS_AUTHORIZATION: `${token}`,
+        },
+      });
       console.log(response.data);
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -193,15 +190,11 @@ function CalendarModal({
       firstday: dateFormat(selectedDate),
     };
     try {
-      const response = await axios.post(
-        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/firstday",
-        payload,
-        {
-          headers: {
-            ACCESS_AUTHORIZATION: `${token}`,
-          },
-        }
-      );
+      const response = await axios.post(`${baseApiUrl}/firstday`, payload, {
+        headers: {
+          ACCESS_AUTHORIZATION: `${token}`,
+        },
+      });
 
       //   setSelectedDate()
 
@@ -243,14 +236,11 @@ function App() {
     const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     //인삿말 가져오기
     try {
-      const response = await axios.get(
-        "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/textballon",
-        {
-          headers: {
-            ACCESS_AUTHORIZATION: `${token}`,
-          },
-        }
-      );
+      const response = await axios.get(`${baseApiUrl}/textballon`, {
+        headers: {
+          ACCESS_AUTHORIZATION: `${token}`,
+        },
+      });
       console.log(response.data.data);
       console.log(JSON.parse(response.data.data.textballon));
       const value = JSON.parse(response.data.data.textballon).textballon;
@@ -291,39 +281,36 @@ function App() {
     <div>
       {message && <MessageContainer>{message}</MessageContainer>}
       <ButtonContainer>
-      <img 
-  src={button} 
-  alt="인삿말 버튼" 
-  width="20" 
-  height="20" 
-  style={{
-    cursor: "pointer",
-  }}
-  onClick={() => setMessageModalOpen(true)}
-/>
+        <img
+          src={button}
+          alt="인삿말 버튼"
+          width="20"
+          height="20"
+          style={{
+            cursor: "pointer",
+          }}
+          onClick={() => setMessageModalOpen(true)}
+        />
 
-<img 
-  src={greeting} 
-  width="100" 
-/>
-<div
-  style={{
-    position: "relative",
-    display: "inline-block",
-    marginTop: "20px",
-  }}
->
-  <img 
-    src={button} 
-    alt="입덕일 버튼" 
-    width="20" 
-    height="20" 
-    style={{
-      cursor: "pointer"
-    }}
-    onClick={() => setCalendarModalOpen(true)}
-  />
-</div>
+        <img src={greeting} width="100" />
+        <div
+          style={{
+            position: "relative",
+            display: "inline-block",
+            marginTop: "20px",
+          }}
+        >
+          <img
+            src={button}
+            alt="입덕일 버튼"
+            width="20"
+            height="20"
+            style={{
+              cursor: "pointer",
+            }}
+            onClick={() => setCalendarModalOpen(true)}
+          />
+        </div>
       </ButtonContainer>
       {daysPassed != null && (
         <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${

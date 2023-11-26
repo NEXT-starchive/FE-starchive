@@ -4,6 +4,7 @@ import twitterMockData from "./twitterMockData.json";
 import logoTwitter from "./img/logoTwitter.png";
 import { useState, useEffect, useCallback } from "react";
 import axios from "axios";
+import { baseApiUrl } from "../../../constants/base-api-url";
 
 const TwitterCard = () => {
   // 여기서 fetch 요청으로 데이터를 가져오고, 반복문으로 아래에서 Card를 충분히 만들기
@@ -15,15 +16,12 @@ const TwitterCard = () => {
   const loadMoreData = useCallback(async () => {
     if (hasMore) {
       try {
-        const response = await axios.get(
-          "http://ec2-3-39-243-152.ap-northeast-2.compute.amazonaws.com:8080/twitter",
-          {
-            params: {
-              page,
-              size: 10,
-            },
-          }
-        );
+        const response = await axios.get(`${baseApiUrl}/twitter`, {
+          params: {
+            page,
+            size: 10,
+          },
+        });
         setTwitterData((prevTwitterData) => [
           ...prevTwitterData,
           ...response.data.data.content,
