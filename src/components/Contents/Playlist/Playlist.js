@@ -1,9 +1,48 @@
 import { styled } from "styled-components";
-import music1 from "./1.jpg";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBackward, faCirclePlay, faForward } from '@fortawesome/free-solid-svg-icons'
+
+//img 가져오기
+import bar from './img/bar.png'
+import music1 from './img/1.png'
+import music2 from './img/2.png'
+import music3 from './img/3.png'
+import music4 from './img/4.png'
+import music5 from './img/5.png'
+import music6 from './img/6.png'
+import music7 from './img/7.png'
+
+const songs = [
+  { title: 'Song Title 1', artist: 'Artist Name 1', image: music1, link: 'link-to-song/1' },
+  { title: 'Song Title 2', artist: 'Artist Name 2', image: music2, link: 'link-to-song/2' },
+  { title: 'hSong Title 3', artist: 'Artist Name 3', image: music3, link: 'link-to-song/3' },
+  { title: 'Song Title 4', artist: 'Artist Name 4', image: music4, link: 'link-to-song/4' },
+  { title: 'Song Title 5', artist: 'Artist Name 5', image: music5, link: 'link-to-song/5' },
+  { title: 'Song Title 6', artist: 'Artist Name 6', image: music6, link: 'link-to-song/6' },
+  { title: 'Song Title 7', artist: 'Artist Name 7', image: music7, link: 'link-to-song/7' }
+];
+
+const randomNum = Math.floor(Math.random() * 7) +1;
+const imagePath = songs[randomNum-1].image;
+
+const Icon = styled(FontAwesomeIcon)`
+  margin: 0 10px;
+  font-size: 24px; /* 아이콘 크기 조정 */
+`;
+
+const PlayListContainer = styled.div`
+  flex: 1;
+  box-sizing: border-box;
+  border: 1px solid #000;
+  padding:15px;
+  height: 1000px;
+  justify-content: center;
+`; 
 
 const MusicPlayer = styled.div`
   width: 100%;
   max-width: 300px; /* 또는 원하는 너비 */
+  height: 550px;
   background-color: #fff; /* 대체 색상 */
   border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -12,11 +51,12 @@ const MusicPlayer = styled.div`
 `;
 
 const AlbumCover = styled.div`
-  width: 100%;
-  height: 200px; /* 또는 원하는 높이 */
-  background-size: cover;
+  width: 220px;
+  height: 300px; /* 또는 원하는 높이 */
   background-position: center;
-  opacity: 0.5; /* 필요에 따라 불투명도 조정 */
+  background-size: cover;
+  margin:10px;
+  opacity: 0.6; /* 필요에 따라 불투명도 조정 */
   background-image: url("${(props) => props.imagePath}");
 `;
 
@@ -37,45 +77,53 @@ const ArtistName = styled.p`
 
 const Controls = styled.div`
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column; /* 아이콘과 버튼을 수직으로 배열 */
+  align-items: center; /* 아이콘과 버튼을 중앙에 배치 */
   padding: 10px;
 `;
-
-const PlayButton = styled.a`
-  display: inline-block;
-  /* 재생 버튼에 대한 스타일 추가 */
-`;
-
-// 이미지와 링크는 랜덤으로 1부터 15 사이의 숫자 하나를 할당
-const randomNum = Math.floor(Math.random() * 15) + 1;
-const imagePath = `path/to/local/image/${randomNum}.png`;
-const songLink = `link-to-song/${randomNum}`;
 
 const PlayList = () => {
   return (
     <PlayListContainer>
       <MusicPlayer>
-        {/* <AlbumCover imagePath={imagePath} /> */}
-        <AlbumCover imagePath={music1} />
+        <AlbumCover imagePath={imagePath} />
         <SongInfo>
-          <SongTitle>Song Title {randomNum}</SongTitle>
-          <ArtistName>Artist Name</ArtistName>
+          <SongTitle>{randomNum === 1 ? 'Standing Next to You' :
+           randomNum === 2 ? 'Butter' :
+           randomNum === 3 ? 'DNA' :
+           randomNum === 4 ? '작은 것들을 위한 시 (Boy With Luv)' :
+           randomNum === 5 ? 'RUN' :
+           randomNum === 6 ? 'ON' :
+           randomNum === 7 ? '봄날' :
+           `Song Title ${randomNum}`}</SongTitle>
+          <ArtistName>{randomNum === 1 ? '정국 (Jung Kook)' :
+           randomNum === 2 ? 'BTS (방탄소년단)' :
+           randomNum === 3 ? 'BTS (방탄소년단)' :
+           randomNum === 4 ? 'BTS (방탄소년단)' :
+           randomNum === 5 ? 'BTS (방탄소년단)' :
+           randomNum === 6 ? 'BTS (방탄소년단)' :
+           randomNum === 7 ? 'BTS (방탄소년단)' :
+           `Artist Name ${randomNum}`}</ArtistName>
         </SongInfo>
         <Controls>
-          <PlayButton href={songLink}>Play</PlayButton>
+          <img src={bar} alt="Bar" width="200"  />
+          <div style={{ display: 'flex' }}>
+  <Icon icon={faBackward} />
+  <a href={randomNum === 1 ? 'https://www.youtube.com/watch?v=UNo0TG9LwwI'
+     : randomNum === 2 ? 'https://www.youtube.com/watch?v=WMweEpGlu_U'
+     : randomNum === 3 ? 'https://www.youtube.com/watch?v=MBdVXkSdhwU'
+     : randomNum === 4 ? 'https://www.youtube.com/watch?v=XsX3ATc3FbA'
+     : randomNum === 5 ? 'https://www.youtube.com/watch?v=5Wn85Ge22FQ'
+     : randomNum === 6 ? 'https://www.youtube.com/watch?v=mPVDGOVjRQ0'
+     : 'https://www.youtube.com/watch?v=xEeFrLSkMm8' }>
+    <Icon icon={faCirclePlay} />
+  </a>
+  <Icon icon={faForward} />
+</div>
         </Controls>
-        {/* 다른 컴포넌트 또는 요소 */}
       </MusicPlayer>
     </PlayListContainer>
   );
 };
 
 export default PlayList;
-
-const PlayListContainer = styled.div`
-  flex: 1;
-  box-sizing: border-box;
-  border: 1px solid #000;
-  height: 1000px;
-`;

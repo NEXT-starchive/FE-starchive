@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import Calendar from "react-calendar";
+import 'react-calendar/dist/Calendar.css';
 
 //mock데이터 테스트
 import greetingMock from "./Greeting.json";
@@ -28,10 +29,16 @@ const ModalBox = styled.div`
   padding: 20px;
   background-color: white;
   border-radius: 10px;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(128, 94, 158, 0.5); 
 `;
 
 const CloseButton = styled.button`
-  float: right;
+float: right;
+background-color: #ab47bc; /* dark pastel purple */
+color: white;
+border-radius:100px;
+padding: 5px 10px;
 `;
 
 const ButtonContainer = styled.div`
@@ -55,9 +62,34 @@ const DaysContainer = styled.div`
   background-color: white;
   border-radius: 15px;
   border: 1px solid #ccc;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px rgba(128, 94, 158, 0.1);
   color: #9c27b0; /* darker purple */
   font-weight: bold;
+`;
+
+const Reactcalendar = styled.div`
+  width: 350px;
+  max-width: 100%;
+  background: white;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+  border-radius: 10px;
+  position: center;
+  box-shadow: 0px 0px 20px #e0e0e0;
+`;
+const SaveButton = styled.button`
+  background-color: '#f44336'
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #c681e6; /* darker purple */
+  }
 `;
 
 function MessageModal({ isOpen, closeModal, message, setMessage }) {
@@ -114,7 +146,7 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
           onChange={handleChange}
           onKeyPress={handleKeyPress}
         />
-        <button onClick={handleSubmit}>저장</button>
+        <SaveButton onClick={handleSubmit}>저장</SaveButton>
       </ModalBox>
     </Container>
   ) : null;
@@ -259,39 +291,39 @@ function App() {
     <div>
       {message && <MessageContainer>{message}</MessageContainer>}
       <ButtonContainer>
-        <button
-          style={{
-            width: "30px",
-            height: "30px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-          onClick={() => setMessageModalOpen(true)}
-        >
-          <img src={button} alt="인삿말 버튼" width="20" height="20" />
-        </button>
-        <img src={greeting} width="100" />
-        <div
-          style={{
-            position: "relative",
-            display: "inline-block",
-            marginTop: "20px",
-          }}
-        >
-          <button
-            style={{
-              width: "30px",
-              height: "30px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-            onClick={() => setCalendarModalOpen(true)}
-          >
-            <img src={button} alt="입덕일 버튼" width="20" height="20" />
-          </button>
-        </div>
+      <img 
+  src={button} 
+  alt="인삿말 버튼" 
+  width="20" 
+  height="20" 
+  style={{
+    cursor: "pointer",
+  }}
+  onClick={() => setMessageModalOpen(true)}
+/>
+
+<img 
+  src={greeting} 
+  width="100" 
+/>
+<div
+  style={{
+    position: "relative",
+    display: "inline-block",
+    marginTop: "20px",
+  }}
+>
+  <img 
+    src={button} 
+    alt="입덕일 버튼" 
+    width="20" 
+    height="20" 
+    style={{
+      cursor: "pointer"
+    }}
+    onClick={() => setCalendarModalOpen(true)}
+  />
+</div>
       </ButtonContainer>
       {daysPassed != null && (
         <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
