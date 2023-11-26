@@ -18,8 +18,4 @@ function App() {
   );
 }
 
-const Happ = () => {
-  return <EventPractice />;
-};
-
 export default App;
