@@ -11,7 +11,7 @@ import characterYoutube from "./img/Youtube.jpg";
 import characterGoods from "./img/Goods.jpg";
 
 const Achive = () => {
-  const date = "2023.10.25";
+  // const date = "2023.10.25";
   // const contentYoutube = "sample contentYoutube";
   // const contentGoods = "sample contentGoods";
   return (
