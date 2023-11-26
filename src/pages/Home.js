@@ -5,7 +5,6 @@ import styled from "styled-components";
 const Home = () => {
   return (
     <>
-      <div>Home</div>
       <Header />
       <Contents />
     </>
