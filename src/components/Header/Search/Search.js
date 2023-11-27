@@ -84,6 +84,7 @@ const SearchInput = styled.input`
   font-size: 20px;
 
   color: #917f9e;
+  font-weight: 700;
 
   &::placeholder {
     color: #cfcfcf;

@@ -28,7 +28,7 @@ const Login = () => {
       {authCode ? (
         <LogoutButton onClick={handleLogout}>Logout</LogoutButton>
       ) : (
-        <SignInButton onClick={handleLogin}>Sign in</SignInButton>
+        <SignInButton onClick={handleLogin}>Sign In</SignInButton>
       )}
     </LoginComponent>
   );
@@ -46,6 +46,7 @@ const HomeButton = styled.button`
   padding: 10px 20px;
   font-size: 20px;
   background: none;
+  font-weight: 700;
 `;
 
 const SignInButton = styled.button`
@@ -54,6 +55,7 @@ const SignInButton = styled.button`
   padding: 10px 20px;
   font-size: 20px;
   background: none;
+  font-weight: 700;
 `;
 
 const LogoutButton = styled.button`
@@ -62,4 +64,5 @@ const LogoutButton = styled.button`
   padding: 10px 20px;
   font-size: 20px;
   background: none;
+  font-weight: 700;
 `;

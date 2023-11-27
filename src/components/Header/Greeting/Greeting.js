@@ -10,6 +10,7 @@ import greetingMock from "./Greeting.json";
 import button from "./img/button.png";
 import calendar from "./img/calendar.png";
 import greeting from "./img/greeting.png";
+import headerBackground from "./img/headerBackground.png";
 import { baseApiUrl } from "../../../constants/base-api-url";
 import { dateFormat } from "../../../utils/date-format";
 
@@ -37,10 +38,16 @@ const ModalBox = styled.div`
 
 const CloseButton = styled.button`
   float: right;
-  background-color: #ab47bc; /* dark pastel purple */
   color: white;
   border-radius: 100px;
   padding: 5px 10px;
+  border: none;
+  background-color: #c1c1c1;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ab47bc; /* darker purple */
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -99,7 +106,7 @@ const SaveButton = styled.button`
   background-color: #c1c1c1;
 
   &:hover {
-    background-color: #917f9e; /* darker purple */
+    background-color: #ab47bc; /* darker purple */
   }
 `;
 
@@ -109,7 +116,7 @@ const Input = styled.input`
   margin-bottom: 20px;
   padding: 3px 10px;
   border-radius: 10px;
-  border: 3px solid #917f9e;
+  border: 3px dashed #917f9e;
   font-weight: 700;
 `;
 
@@ -214,7 +221,7 @@ function CalendarModal({
       <ModalBox>
         <CloseButton onClick={closeModal}>X</CloseButton>
         <h3>입덕일을 입력해주세요</h3>
-        <Calendar onChange={handleDateChange} />
+        <Calendar onChange={handleDateChange} style={{ width: "100vw" }} />
       </ModalBox>
     </Container>
   ) : null;

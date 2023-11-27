@@ -196,6 +196,7 @@ const Input = styled.input`
   padding: 3px 10px;
   border-radius: 10px;
   border: 1px solid #917f9e;
+  font-weight: 700;
 `;
 
 const InputUrl = styled(Input)`
@@ -222,15 +223,17 @@ const Button = styled.button`
 const CancelButton = styled(Button)`
   cursor: pointer;
   margin-right: 20px;
+  font-weight: 700;
 `;
 
 const DeleteButton = styled(Button)`
   cursor: pointer;
   margin-right: 20px;
+  font-weight: 700;
 `;
 
 const CreateButton = styled(Button)`
   cursor: pointer;
-
+  font-weight: 700;
   background: #f1ecf5;
 `;

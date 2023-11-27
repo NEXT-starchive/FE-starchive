@@ -29,7 +29,6 @@ const Container = styled.div`
 `;
 
 const ModalBox = styled.div`
-  width: 500px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -37,12 +36,22 @@ const ModalBox = styled.div`
   box-shadow: 0 0 10px rgba(128, 94, 158, 0.5);
 `;
 
+const ModalBoxCalendar = styled(ModalBox)`
+  width: 350px;
+`;
+
 const CloseButton = styled.button`
   float: right;
-  background-color: #ab47bc; /* dark pastel purple */
   color: white;
   border-radius: 100px;
   padding: 5px 10px;
+  border: none;
+  background-color: #c1c1c1;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ab47bc; /* darker purple */
+  }
 `;
 
 const SaveButton = styled.button`
@@ -53,10 +62,10 @@ const SaveButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   font-size: 1em;
-  transition: background-color 0.3s ease;
+  background-color: 0.3s ease;
 
   &:hover {
-    background-color: #c681e6; /* darker purple */
+    background-color: #ab47bc; /* darker purple */
   }
 `;
 
@@ -169,11 +178,11 @@ function CalendarModal({
 
   return isOpen ? (
     <Container>
-      <ModalBox>
+      <ModalBoxCalendar>
         <CloseButton onClick={closeModal}>X</CloseButton>
-        <h3>입덕일을 입력해주세요</h3>
+        <h3 style={{ width: "50vw" }}>입덕일을 입력해주세요</h3>
         <Calendar onChange={handleDateChange} />
-      </ModalBox>
+      </ModalBoxCalendar>
     </Container>
   ) : null;
 }

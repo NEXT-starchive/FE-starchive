@@ -118,6 +118,7 @@ const Input = styled.input`
   padding: 3px 10px;
   border-radius: 10px;
   border: 1px solid #917f9e;
+  font-weight: 700;
 `;
 
 const InputUrl = styled(Input)`
@@ -137,17 +138,33 @@ const ButtonGroup = styled.div`
 const Button = styled.button`
   width: 70px;
   height: 40px;
-  border-radius: 10px;
+  border-radius: 20px;
   border: none;
 `;
 
 const DeleteButton = styled(Button)`
   cursor: pointer;
   margin-right: 20px;
+  font-weight: 700;
+  font-size: 0.9em;
+  color: white;
+  background-color: #c1c1c1;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #ab47bc; /* darker purple */
+  }
 `;
 
 const CreateButton = styled(Button)`
   cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9em;
+  color: white;
+  background-color: #c1c1c1;
+  transition: background-color 0.3s ease;
 
-  background: #f1ecf5;
+  &:hover {
+    background-color: #ab47bc; /* darker purple */
+  }
 `;

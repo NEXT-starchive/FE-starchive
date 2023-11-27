@@ -137,7 +137,7 @@ const PlayList = () => {
         <img src={calendar} width="80" />
       </div> */}
       {/* <AchiveTitle title="playlist" characterImgUrl={calendar} /> */}
-      <PlayListTitle title="playlist" characterImgUrl={calendar} />
+      <PlayListTitle title="Playlist" characterImgUrl={calendar} />
       <MusicPlayer>
         <AlbumCover imagePath={imagePath} />
         <SongInfo>

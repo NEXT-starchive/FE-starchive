@@ -2,6 +2,7 @@ import { styled } from "styled-components";
 import Greeting from "./Greeting/Greeting";
 import Search from "./Search/Search";
 import Login from "./Login/Login";
+import headerBackground from "./Greeting/img/headerBackground.png";
 
 const Header = () => {
   return (
@@ -23,7 +24,7 @@ const Header = () => {
 export default Header;
 
 const HeaderContainer = styled.header`
-  background: #dcd7ef;
+  background: url(${headerBackground}) center/cover no-repeat;
   width: 100%;
   height: 280px;
 `;
