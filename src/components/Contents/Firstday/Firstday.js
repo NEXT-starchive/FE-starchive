@@ -46,7 +46,7 @@ const CloseButton = styled.button`
 `;
 
 const SaveButton = styled.button`
-  background-color: '#f44336'
+  background-color: "#f44336";
   color: white;
   padding: 10px 20px;
   border: none;
@@ -58,6 +58,15 @@ const SaveButton = styled.button`
   &:hover {
     background-color: #c681e6; /* darker purple */
   }
+`;
+
+const Input = styled.input`
+  width: 300px;
+  height: 30px;
+  margin-bottom: 20px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 1px solid #917f9e;
 `;
 
 function MessageModal({ isOpen, closeModal, message, setMessage }) {
@@ -102,7 +111,7 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
       <ModalBox>
         <CloseButton onClick={closeModal}>X</CloseButton>
         <h3>인삿말을 바꿔보세요</h3>
-        <input
+        <Input
           type="text"
           name="message"
           placeholder="인삿말을 입력해주세요"
@@ -273,29 +282,24 @@ const Firstday = () => {
         {/* <img src={calendar} width="80" /> */}
         {daysPassed != null ? (
           <DaysContainer>{`방탄과 함께한지: ${
-            daysPassed + "일"
+            daysPassed + "일" + "💜"
           }`}</DaysContainer>
         ) : (
-          <DaysContainer>{`입덕일을 입력해주세요`}</DaysContainer>
+          <DaysContainer>
+            <div style={{ fontWeight: "700" }}>입덕일을 입력해주세요</div>
+          </DaysContainer>
         )}
-        <div
+        <img
+          src={button}
+          alt="입덕일 버튼"
+          width="20"
+          height="20"
           style={{
-            position: "relative",
-            display: "inline-block",
-            marginTop: "20px",
+            cursor: "pointer",
+            marginLeft: "12vw",
           }}
-        >
-          <img
-            src={button}
-            alt="입덕일 버튼"
-            width="20"
-            height="20"
-            style={{
-              cursor: "pointer",
-            }}
-            onClick={() => setCalendarModalOpen(true)}
-          />
-        </div>
+          onClick={() => setCalendarModalOpen(true)}
+        />
       </div>
     </>
   );
@@ -304,12 +308,15 @@ const Firstday = () => {
 const DaysContainer = styled.div`
   /* Add your CSS here */
   padding: 10px;
-  background-color: white;
+  background-color: #f1ecf5;
   border-radius: 15px;
-  border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(128, 94, 158, 0.1);
   color: #9c27b0; /* darker purple */
   font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12vw;
 `;
 
 export default Firstday;

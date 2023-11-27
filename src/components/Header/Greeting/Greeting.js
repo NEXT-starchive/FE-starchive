@@ -27,7 +27,7 @@ const Container = styled.div`
 `;
 
 const ModalBox = styled.div`
-  width: 500px;
+  width: 400px;
   padding: 20px;
   background-color: white;
   border-radius: 10px;
@@ -56,6 +56,10 @@ const MessageContainer = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #9c27b0; /* light purple */
   font-weight: bold;
+  width: 8vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const DaysContainer = styled.div`
@@ -79,19 +83,34 @@ const Reactcalendar = styled.div`
   position: center;
   box-shadow: 0px 0px 20px #e0e0e0;
 `;
+
 const SaveButton = styled.button`
-  background-color: '#f44336'
   color: white;
   padding: 10px 20px;
   border: none;
-  border-radius: 10px;
+  border-radius: 20px;
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.3s ease;
+  height: 5vh;
+  width: 100px;
+  font-weight: 700;
+  margin-left: 290px;
+  background-color: #c1c1c1;
 
   &:hover {
-    background-color: #c681e6; /* darker purple */
+    background-color: #917f9e; /* darker purple */
   }
+`;
+
+const Input = styled.input`
+  width: 370px;
+  height: 30px;
+  margin-bottom: 20px;
+  padding: 3px 10px;
+  border-radius: 10px;
+  border: 3px solid #917f9e;
+  font-weight: 700;
 `;
 
 function MessageModal({ isOpen, closeModal, message, setMessage }) {
@@ -135,16 +154,18 @@ function MessageModal({ isOpen, closeModal, message, setMessage }) {
     <Container>
       <ModalBox>
         <CloseButton onClick={closeModal}>X</CloseButton>
-        <h3>인삿말을 바꿔보세요</h3>
-        <input
-          type="text"
-          name="message"
-          placeholder="인삿말을 입력해주세요"
-          value={form.message}
-          onChange={handleChange}
-          onKeyPress={handleKeyPress}
-        />
-        <SaveButton onClick={handleSubmit}>저장</SaveButton>
+        <h3 style={{ color: "#917F9E" }}>인삿말을 바꿔보세요</h3>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <Input
+            type="text"
+            name="message"
+            placeholder="인삿말을 입력해주세요"
+            value={form.message}
+            onChange={handleChange}
+            onKeyPress={handleKeyPress}
+          />
+          <SaveButton onClick={handleSubmit}>저장</SaveButton>
+        </div>
       </ModalBox>
     </Container>
   ) : null;
@@ -254,30 +275,39 @@ function App() {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginTop: "20px",
         flex: "0.8",
       }}
     >
       {message ? (
         <MessageContainer>{message}</MessageContainer>
       ) : (
-        <MessageContainer>인삿말을 압력해주세요.</MessageContainer>
+        <MessageContainer>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "flexStart",
+            }}
+          >
+            <div>인삿말을</div>
+            <div>입력해주세요</div>
+          </div>
+        </MessageContainer>
       )}
-      <ButtonContainer>
-        <img
-          src={button}
-          alt="인삿말 버튼"
-          width="20"
-          height="20"
-          style={{
-            cursor: "pointer",
-            marginTop: "auto",
-          }}
-          onClick={() => setMessageModalOpen(true)}
-        />
-
-        <img src={greeting} width="100" />
-        {/* <div
+      <img
+        src={button}
+        alt="인삿말 버튼"
+        width="20"
+        height="20"
+        style={{
+          cursor: "pointer",
+          positon: "relative",
+          marginTop: "80px",
+        }}
+        onClick={() => setMessageModalOpen(true)}
+      />
+      <img src={greeting} width="100" style={{ marginLeft: "20px" }} />
+      {/* <div
           style={{
             position: "relative",
             display: "inline-block",
@@ -295,7 +325,6 @@ function App() {
             onClick={() => setCalendarModalOpen(true)}
           />
         </div> */}
-      </ButtonContainer>
       {/* {daysPassed != null && (
         <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
           daysPassed + "일"

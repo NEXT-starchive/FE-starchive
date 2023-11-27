@@ -40,7 +40,7 @@ const Search = () => {
 export default Search;
 
 const SearchComponent = styled.div`
-  flex: 2;
+  display: flex;
   height: 69px;
   box-sizing: border-box;
 `;
@@ -59,7 +59,8 @@ const SearchContainer = styled.form`
   display: flex;
   align-items: center;
   justify-content: left;
-  width: 736px;
+  width: 45vw;
+  height: 8vh;
   border-radius: 40px;
   border: 5px solid #d8d5e1;
   box-sizing: border-box;
