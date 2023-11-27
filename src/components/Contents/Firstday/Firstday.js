@@ -199,6 +199,9 @@ const Firstday = () => {
         },
       });
 
+      console.log(response.data.data.firstday);
+      // console.log(JSON.parse(response.data.data));
+      setDaysPassed(response.data.data.firstday);
       setSelectedDate(new Date());
     } catch (error) {
       console.error("Error fetching data: ", error);
@@ -235,7 +238,7 @@ const Firstday = () => {
 
         {/* <img src={calendar} width="80" /> */}
         {daysPassed != null ? (
-          <DaysContainer>{`방탄과 함께한지: ${greetingMock.data.firstday} ${
+          <DaysContainer>{`방탄과 함께한지: ${
             daysPassed + "일"
           }`}</DaysContainer>
         ) : (

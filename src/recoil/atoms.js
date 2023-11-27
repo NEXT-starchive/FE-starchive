@@ -30,4 +30,5 @@ export const currentBookMarkAtom = atom({
 export const authCodeAtom = atom({
   key: "authCodeAtom",
   default: null,
+  effects_UNSTABLE: [persistAtom],
 });

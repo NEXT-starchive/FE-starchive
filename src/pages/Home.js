@@ -19,8 +19,15 @@ const Home = () => {
     if (code) {
       setAuthCode(code);
       console.log("code", code);
+    } else {
+      const localToken = JSON.parse(localStorage.getItem("authCode"));
+      if (localToken) {
+        setAuthToken(localToken);
+      }
     }
   };
+
+  const getToken = () => {};
 
   useEffect(() => {
     if (authCode) {
@@ -47,6 +54,7 @@ const Home = () => {
 
   useEffect(() => {
     handleLogin();
+
     // window.confirm("서버로 토큰 보내기") ? navigate("/") : navigate("/");
   }, []);
 

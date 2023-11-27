@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   const handleLogin = () => {
-    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=openid%20email&client_id=521902002161-89ta0ucjee05ts0donvi9s7kr2637jol.apps.googleusercontent.com&redirect_uri=${process.env.REACT_APP_API_URL}`;
+    window.location.href = `https://accounts.google.com/o/oauth2/v2/auth?response_type=code&scope=openid%20email&client_id=521902002161-89ta0ucjee05ts0donvi9s7kr2637jol.apps.googleusercontent.com&redirect_uri=${redirectUrl}`;
   };
 
   const handleLogout = () => {
