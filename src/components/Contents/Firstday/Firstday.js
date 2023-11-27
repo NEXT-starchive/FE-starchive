@@ -12,6 +12,8 @@ import calendar from "./img/calendar.png";
 import greeting from "./img/greeting.png";
 import { baseApiUrl } from "../../../constants/base-api-url";
 import { dateFormat } from "../../../utils/date-format";
+import { daysPassedAtom } from "../../../recoil/atoms";
+import { useRecoilState } from "recoil";
 
 const Container = styled.div`
   position: fixed;
@@ -121,11 +123,12 @@ function CalendarModal({
   setDaysPassed,
   selectedDate,
 }) {
-  const calendarPost = async () => {
+  const calendarPost = async (date) => {
     //인삿말 가져오기
+    console.log("selectedDate", dateFormat(date));
     const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
     const payload = {
-      firstday: dateFormat(selectedDate),
+      firstday: dateFormat(date),
     };
     try {
       const response = await axios.post(`${baseApiUrl}/firstday`, payload, {
@@ -145,11 +148,14 @@ function CalendarModal({
   const handleDateChange = (date) => {
     setSelectedDate(date);
     const today = new Date();
+    if (today - date) {
+      console.log("today - date", today - date);
+    }
     const diffTime = Math.abs(today - date);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     setDaysPassed(diffDays);
     closeModal();
-    if (localStorage.getItem("authCode")) calendarPost();
+    if (localStorage.getItem("authCode")) calendarPost(date);
   };
 
   return isOpen ? (
@@ -168,7 +174,7 @@ const Firstday = () => {
   const [isCalendarModalOpen, setCalendarModalOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [daysPassed, setDaysPassed] = useState(null);
+  const [daysPassed, setDaysPassed] = useRecoilState(daysPassedAtom);
 
   const textBallonGet = async () => {
     const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
@@ -199,7 +205,7 @@ const Firstday = () => {
         },
       });
 
-      console.log(response.data.data.firstday);
+      console.log("firstday firstday", response.data.data.firstday);
       // console.log(JSON.parse(response.data.data));
       setDaysPassed(response.data.data.firstday);
       setSelectedDate(new Date());
@@ -214,6 +220,34 @@ const Firstday = () => {
       calendarGet();
     }
   }, []);
+
+  useEffect(() => {
+    const calendarPost = async () => {
+      //인삿말 가져오기
+      console.log("selectedDate", dateFormat(selectedDate));
+      const token = JSON.parse(localStorage.getItem("authCode")).accessToken;
+      const payload = {
+        firstday: dateFormat(selectedDate),
+      };
+      try {
+        const response = await axios.post(`${baseApiUrl}/firstday`, payload, {
+          headers: {
+            ACCESS_AUTHORIZATION: `${token}`,
+          },
+        });
+
+        //   setSelectedDate()
+
+        //   setSelectedDate(new Date());
+      } catch (error) {
+        console.error("Error fetching data: ", error);
+      }
+    };
+
+    if (localStorage.getItem("authCode")) {
+      calendarPost();
+    }
+  }, [selectedDate]);
 
   return (
     <>

@@ -44,6 +44,11 @@ const BookMarkCreate = () => {
   useEffect(() => {
     // window 객체에 클릭 이벤트 리스너를 추가합니다.
     window.addEventListener("click", handleClickOutside);
+    console.log(
+      "ref.current.offsetLeft, window.innerWidth",
+      ref.current.offsetLeft,
+      window.innerWidth
+    );
 
     // 컴포넌트가 언마운트될 때 리스너를 제거합니다.
     return () => {

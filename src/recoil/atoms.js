@@ -32,3 +32,9 @@ export const authCodeAtom = atom({
   default: null,
   effects_UNSTABLE: [persistAtom],
 });
+
+export const daysPassedAtom = atom({
+  key: "daysPassedAtom",
+  default: 0,
+  effects_UNSTABLE: [persistAtom],
+});
