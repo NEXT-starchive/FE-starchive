@@ -37,6 +37,7 @@ const LoginContainer = styled.div`
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: center;
   height: 100%;
   max-width: 1110px;
   margin: 0 auto;
