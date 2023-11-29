@@ -52,7 +52,7 @@ const Auth = () => {
 
   return (
     <>
-      <div>Auth</div>
+      {/* <div>Auth</div> */}
       <Header />
       <Contents />
     </>
