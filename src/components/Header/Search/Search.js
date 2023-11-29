@@ -27,7 +27,7 @@ const Search = () => {
   return (
     <SearchComponent>
       <SearchContainer onSubmit={handleSubmit}>
-        <SearchIcon imageUrl={SearchIconImage} />
+        <SearchIcon imgUrl={SearchIconImage} />
         <SearchInput
           placeholder="검색어를 입력해주세요."
           onChange={handleInputChange}
