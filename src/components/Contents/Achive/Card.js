@@ -4,23 +4,33 @@ const Card = ({
   previewImgUrl,
   title = "BTS_official",
   logoUrl = "",
-  relaseDate,
+  releaseDate = "",
   additionalInfo,
-  hashTage = "",
+  goodsName = "",
+  area = "",
+  contentUrl = "",
+  titleUrl = "",
 }) => {
   return (
     <CardContainer>
       {/* <OgImg src={previewImgUrl} /> */}
-      <PreviewImgDiv>
-        <PreviewImg style={{ backgroundImage: `url(${previewImgUrl})` }} />
-      </PreviewImgDiv>
+      <LinkTo href={contentUrl} target="_blank">
+        <PreviewImgDiv>
+          <PreviewImg style={{ backgroundImage: `url(${previewImgUrl})` }} />
+        </PreviewImgDiv>
+      </LinkTo>
       <ContentContainer>
-        <Title>{title}</Title>
+        <LinkTo href={titleUrl} target="_blank">
+          <Title>{title}</Title>
+        </LinkTo>
         <LogoImg style={{ backgroundImage: `url(${logoUrl})` }}></LogoImg>
-        <RelaseDate> | {relaseDate}</RelaseDate>
+        <RelaseDate> | {releaseDate}</RelaseDate>
       </ContentContainer>
-      <ContentTextArea>{additionalInfo}</ContentTextArea>
-      <HashTage>{hashTage}</HashTage>
+      <TextArea>
+        <GoodsName>{goodsName}</GoodsName>
+        <Area>{area}</Area>
+        <ContentTextArea>{additionalInfo}</ContentTextArea>
+      </TextArea>
     </CardContainer>
   );
 };
@@ -31,8 +41,10 @@ const CardContainer = styled.div`
   background: #f1ecf5;
   border-radius: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  /* margin: -20px 10px 23px 10px; */
+  /* overflow: hidden; */
+  word-wrap: break-word;
+  padding-bottom: 10px;
+  margin: -20px 10px 33px 10px;
   width: 255px;
 `;
 
@@ -94,14 +106,24 @@ const ContentTextArea = styled.div`
   text-align: left;
 `;
 
-const HashTage = styled.div`
-  color: #66a3d7;
-  font-family: Helvetica Neue;
+const GoodsName = styled.div`
   font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  margin: 13px 20px;
+  font-weight: 600;
+  margin: 0 20px;
   width: 232px;
   text-align: left;
 `;
+const Area = styled.div`
+  font-size: 13px;
+
+  margin: 0 20px;
+  width: 232px;
+  text-align: left;
+`;
+
+const LinkTo = styled.a`
+  text-decoration: none !important;
+  color: inherit;
+`;
+
+const TextArea = styled.div``;

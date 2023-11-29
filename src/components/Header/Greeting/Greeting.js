@@ -120,6 +120,13 @@ const Input = styled.input`
   font-weight: 700;
 `;
 
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
+
 function MessageModal({ isOpen, closeModal, message, setMessage }) {
   const [form, setForm] = useState({ message: message });
 
@@ -309,7 +316,8 @@ function App() {
         style={{
           cursor: "pointer",
           positon: "relative",
-          marginTop: "80px",
+          // marginTop: "80px",
+          margin: "0px",
         }}
         onClick={() => setMessageModalOpen(true)}
       />

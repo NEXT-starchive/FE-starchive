@@ -287,28 +287,30 @@ const Firstday = () => {
           setSelectedDate={setSelectedDate}
           setDaysPassed={setDaysPassed}
         />
-
-        {/* <img src={calendar} width="80" /> */}
-        {daysPassed != null ? (
-          <DaysContainer>{`방탄과 함께한지: ${
-            daysPassed + "일" + "💜"
-          }`}</DaysContainer>
-        ) : (
-          <DaysContainer>
-            <div style={{ fontWeight: "700" }}>입덕일을 입력해주세요</div>
-          </DaysContainer>
-        )}
-        <img
-          src={button}
-          alt="입덕일 버튼"
-          width="20"
-          height="20"
-          style={{
-            cursor: "pointer",
-            marginLeft: "12vw",
-          }}
-          onClick={() => setCalendarModalOpen(true)}
-        />
+        <FlexDiv>
+          {/* <img src={calendar} width="80" /> */}
+          {daysPassed != null ? (
+            <DaysContainer>
+              방탄과 함께한지
+              <br /> {daysPassed + "일" + "💜"}
+            </DaysContainer>
+          ) : (
+            <DaysContainer>
+              <div style={{ fontWeight: "700" }}>입덕일을 입력해주세요</div>
+            </DaysContainer>
+          )}
+          <img
+            src={button}
+            alt="입덕일 버튼"
+            width="20"
+            height="20"
+            style={{
+              cursor: "pointer",
+              // marginLeft: "12vw",
+            }}
+            onClick={() => setCalendarModalOpen(true)}
+          />
+        </FlexDiv>
       </div>
     </>
   );
@@ -328,4 +330,10 @@ const DaysContainer = styled.div`
   width: 12vw;
 `;
 
+const FlexDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 export default Firstday;
